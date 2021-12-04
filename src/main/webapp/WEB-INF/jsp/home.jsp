@@ -7,9 +7,7 @@
 <%@include file="header.jsp" %>
 <div style="height:80%" align="center">
     <br>
-    <h1>See Newest Orders</h1>
-    <h3><a href="/product/top_product">click here</a></h3>
+    <h1>welcome to DIGI Shop</h1>
 </div>
-<%@include file="footer.jsp" %>
 </body>
 </html>

@@ -17,25 +17,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${pageContext.servletContext.contextPath}/product/top_product">
-                <strong>DIGI</strong>Shop
-
+            <a class="navbar-brand" href="${pageContext.servletContext.contextPath}/home">
+                <strong>DIGI</strong>ShopDemo
             </a>
             <div class="navbar-brand">
             <sec:authorize access="isAuthenticated()">Welcome ${sessionScope.currentUser.username} </sec:authorize>
             </div>
-
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="${pageContext.servletContext.contextPath}/product/top_product">Top Products</a></li>
-                <li><a href="${pageContext.servletContext.contextPath}/product/search_product_page">Search Products</a>
-                </li>
-                <li><a href="${pageContext.servletContext.contextPath}/order/show_order">Show Orders</a></li>
+                <li><a href="${pageContext.servletContext.contextPath}/person/user_management">UserManagement</a></li>
                 <sec:authorize access="isAuthenticated()">
                     <li><a href="${pageContext.servletContext.contextPath}/logout">Logout</a></li>
                 </sec:authorize>
-
             </ul>
         </div>
     </div>

@@ -1,19 +1,23 @@
 package com.demisco.digishop.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "role")
+@Table(name = "tbl_role")
 public class Role {
-    private Long id;
-    private String name;
-    private Set<User> users;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", updatable = false, nullable = false)
+    private Long id;
+
+    @Column
+    private String name;
+
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users;
+
     public Long getId() {
         return id;
     }
@@ -30,7 +34,6 @@ public class Role {
         this.name = name;
     }
 
-    @ManyToMany(mappedBy = "roles")
     public Set<User> getUsers() {
         return users;
     }

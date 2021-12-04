@@ -9,8 +9,6 @@
     <br><br><br>
     <h3>Exception Details</h3>
     Servlet Name: ${requestScope.get("javax.servlet.error.servlet_name")}<br>
-    Status Code:${pageContext.response.status}<br>
-    Exception Name: ${exception.getClass().getName()}<br>
     Requested URL: ${URL}<br>
     Exception Message: ${exception.getMessage()}<br>
     <br><br>

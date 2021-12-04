@@ -60,7 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         -> {
                     request.getSession(false).setAttribute("currentUser",
                             authentication.getPrincipal());
-                    response.sendRedirect("/product/top_product");
+                    response.sendRedirect("/home");
                 })
                 .loginPage("/login").permitAll()
                 .and().logout().permitAll()
