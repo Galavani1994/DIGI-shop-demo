@@ -27,12 +27,13 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    @CacheEvict(value = "find_by_id",key = "{#p0}")
+    @Cacheable(value = "user_cache",key = "{#p0}")
     public User findById(String id) {
         return userRepository.findById(Long.parseLong(id)).get();
     }
 
     @Transactional
+    @CacheEvict(value = "user_cache",key = "{#p0.id}")
     public void save(User entity) {
 
         validateUniqueUsernmae(entity.getUsername(), entity.getId());

@@ -19,7 +19,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @CacheEvict(value = "findAllUser",allEntries = true)
     List<User> findAll();
 
-    @Cacheable(value = "checkExistByUsername",key = "{#p0,#p1}")
     @Query("SELECT COUNT(u) FROM User u WHERE u.username =:username and u.id <> coalesce(:id,0) ")
     long checkExistByUsername(@Param("username") String username,@Param("id") Long id);
 }
