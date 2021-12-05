@@ -5,6 +5,8 @@ import com.demisco.digishop.model.User;
 import com.demisco.digishop.repository.RoleRepository;
 import com.demisco.digishop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,10 +22,12 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
+
     public List<User> getAllUser() {
         return userRepository.findAll();
     }
 
+    @CacheEvict(value = "find_by_id",key = "{#p0}")
     public User findById(String id) {
         return userRepository.findById(Long.parseLong(id)).get();
     }

@@ -4,6 +4,7 @@ import com.demisco.digishop.model.User;
 import com.demisco.digishop.repository.UserRepository;
 import com.demisco.digishop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
