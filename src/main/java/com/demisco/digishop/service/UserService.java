@@ -7,6 +7,7 @@ import com.demisco.digishop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
-
+    @Cacheable(value = "get_all_user_cahce")
     public List<User> getAllUser() {
         return userRepository.findAll();
     }
@@ -33,7 +34,11 @@ public class UserService {
     }
 
     @Transactional
-    @CacheEvict(value = "user_cache",key = "{#p0.id}")
+
+    @Caching(evict = {
+            @CacheEvict(value = "user_cache",key = "{#p0.id,#p0.username}"),
+            @CacheEvict(value = "get_all_user_cahce",allEntries = true)
+    })
     public void save(User entity) {
 
         validateUniqueUsernmae(entity.getUsername(), entity.getId());

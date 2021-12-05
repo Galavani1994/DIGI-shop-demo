@@ -16,7 +16,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUsername(String username);
 
-    @CacheEvict(value = "findAllUser",allEntries = true)
     List<User> findAll();
 
     @Query("SELECT COUNT(u) FROM User u WHERE u.username =:username and u.id <> coalesce(:id,0) ")

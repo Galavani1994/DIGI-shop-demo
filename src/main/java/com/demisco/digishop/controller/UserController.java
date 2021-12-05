@@ -44,6 +44,7 @@ public class UserController {
 
     @PostMapping(value = "/users/{id}")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @CacheEvict(value = "get_all_user_cahce",allEntries = true)
     public String deleteUser(@PathVariable("id") String id) {
         userService.deleteById(id);
         return "redirect:/api/users/";
